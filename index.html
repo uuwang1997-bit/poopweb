@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="身体日记">
+  <meta name="theme-color" content="#111111">
+  <title>身体日记</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="iphone-frame">
+  <div class="iphone-shell">
+    <div class="dynamic-island"></div>
+    <div class="iphone-screen">
+
+      <!-- Status bar -->
+      <div class="status-bar">
+        <span class="status-time" id="statusTime">9:41</span>
+        <div class="status-icons">
+          <svg width="17" height="12" viewBox="0 0 17 12" fill="white">
+            <rect x="0" y="3" width="3" height="9" rx="1" opacity="0.4"/>
+            <rect x="4.5" y="2" width="3" height="10" rx="1" opacity="0.6"/>
+            <rect x="9" y="0" width="3" height="12" rx="1" opacity="0.8"/>
+            <rect x="13.5" y="0" width="3" height="12" rx="1"/>
+          </svg>
+          <svg width="16" height="12" viewBox="0 0 16 12" fill="white">
+            <path d="M8 2.4C10.4 2.4 12.6 3.4 14.1 5L15.5 3.6C13.6 1.4 10.9 0 8 0C5.1 0 2.4 1.4 0.5 3.6L1.9 5C3.4 3.4 5.6 2.4 8 2.4Z" opacity="0.4"/>
+            <path d="M8 5.2C9.7 5.2 11.2 5.9 12.3 7L13.7 5.6C12.2 4.1 10.2 3.2 8 3.2C5.8 3.2 3.8 4.1 2.3 5.6L3.7 7C4.8 5.9 6.3 5.2 8 5.2Z" opacity="0.7"/>
+            <circle cx="8" cy="10" r="2"/>
+          </svg>
+          <svg width="25" height="12" viewBox="0 0 25 12" fill="none">
+            <rect x="0.5" y="0.5" width="21" height="11" rx="3.5" stroke="white" stroke-opacity="0.35"/>
+            <rect x="2" y="2" width="16" height="8" rx="2" fill="white"/>
+            <path d="M23 4.5V7.5C23.8 7.2 24.5 6.5 24.5 6C24.5 5.5 23.8 4.8 23 4.5Z" fill="white" opacity="0.4"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- App header -->
+      <div class="app-header">
+        <span class="app-title">身体日记</span>
+        <span class="app-date" id="headerDate"></span>
+      </div>
+
+      <!-- Nav -->
+      <div class="nav-tabs">
+        <button class="nav-tab active" data-view="day">日</button>
+        <button class="nav-tab" data-view="week">周</button>
+        <button class="nav-tab" data-view="month">月</button>
+      </div>
+
+      <!-- ── 日视图 ── -->
+      <div class="view-content active" id="view-day">
+        <div class="date-nav">
+          <button class="date-arrow" id="dayPrev">&#8592;</button>
+          <span class="date-nav-label" id="dayLabel"></span>
+          <button class="date-arrow" id="dayNext">&#8594;</button>
+        </div>
+
+        <div class="section-label">今日打卡</div>
+        <div class="check-grid">
+          <label class="check-item" data-key="poop">
+            <div class="check-box"><span class="check-icon">✓</span></div>
+            <div class="check-info">
+              <span class="check-emoji">🟠</span>
+              <span class="check-label">拉粑粑</span>
+            </div>
+          </label>
+          <label class="check-item" data-key="period">
+            <div class="check-box"><span class="check-icon">✓</span></div>
+            <div class="check-info">
+              <span class="check-emoji">🔴</span>
+              <span class="check-label">月经</span>
+            </div>
+          </label>
+          <label class="check-item" data-key="probiotic">
+            <div class="check-box"><span class="check-icon">✓</span></div>
+            <div class="check-info">
+              <span class="check-emoji">🟢</span>
+              <span class="check-label">益生菌</span>
+            </div>
+          </label>
+          <label class="check-item" data-key="poopBefore">
+            <div class="check-box"><span class="check-icon">✓</span></div>
+            <div class="check-info">
+              <span class="check-emoji">🟡</span>
+              <span class="check-label">称前拉粑</span>
+            </div>
+          </label>
+        </div>
+
+        <div class="section-label">体重</div>
+        <div class="weight-row">
+          <span class="weight-label">KG</span>
+          <input class="weight-input" id="weightInput" type="number" step="0.1" min="30" max="200" placeholder="— —">
+        </div>
+
+        <div class="section-label" style="margin-top:14px">备注</div>
+        <textarea class="note-input" id="noteInput" placeholder="今天的感受..."></textarea>
+
+        <button class="save-btn" id="saveBtn">保存今日记录</button>
+        <div class="save-msg" id="saveMsg"></div>
+      </div>
+
+      <!-- ── 周视图 ── -->
+      <div class="view-content" id="view-week">
+        <div class="date-nav">
+          <button class="date-arrow" id="weekPrev">&#8592;</button>
+          <span class="date-nav-label" id="weekLabel"></span>
+          <button class="date-arrow" id="weekNext">&#8594;</button>
+        </div>
+        <div id="weekCards"></div>
+        <div class="legend">
+          <div class="legend-item"><span>🟠</span><span class="legend-text">拉粑粑</span></div>
+          <div class="legend-item"><span>🔴</span><span class="legend-text">月经</span></div>
+          <div class="legend-item"><span>🟢</span><span class="legend-text">益生菌</span></div>
+          <div class="legend-item"><span>🟡</span><span class="legend-text">称前拉粑</span></div>
+        </div>
+      </div>
+
+      <!-- ── 月视图 ── -->
+      <div class="view-content" id="view-month">
+        <div class="date-nav">
+          <button class="date-arrow" id="monthPrev">&#8592;</button>
+          <span class="date-nav-label" id="monthLabel"></span>
+          <button class="date-arrow" id="monthNext">&#8594;</button>
+        </div>
+        <div class="month-cal-grid" id="monthGrid"></div>
+        <div class="section-label" style="margin-top:14px">体重曲线</div>
+        <div class="chart-wrap">
+          <canvas id="weightChart"></canvas>
+        </div>
+        <div class="legend">
+          <div class="legend-item"><span>🟠</span><span class="legend-text">拉粑粑</span></div>
+          <div class="legend-item"><span>🔴</span><span class="legend-text">月经</span></div>
+          <div class="legend-item"><span>🟢</span><span class="legend-text">益生菌</span></div>
+          <div class="legend-item"><span>🟡</span><span class="legend-text">称前拉粑</span></div>
+        </div>
+      </div>
+
+    </div><!-- /iphone-screen -->
+  </div><!-- /iphone-shell -->
+</div><!-- /iphone-frame -->
+
+<script src="app.js"></script>
+</body>
+</html>
