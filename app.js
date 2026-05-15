@@ -68,14 +68,6 @@ function getWeekMonday(d) {
   return copy;
 }
 
-// ── Status bar time ───────────────────────────────────────────────
-function updateClock() {
-  const now = new Date();
-  document.getElementById('statusTime').textContent =
-    String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0');
-}
-updateClock();
-setInterval(updateClock, 10000);
 
 // ── Header date ───────────────────────────────────────────────────
 document.getElementById('headerDate').textContent = fmtDate(today);
