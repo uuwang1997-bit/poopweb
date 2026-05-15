@@ -576,6 +576,25 @@ html, body {
   display: block;
 }
 
+/* ── Edit hints ── */
+.week-edit-hint {
+  margin-left: auto;
+  font-size: 9px;
+  font-weight: 900;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  align-self: flex-end;
+  flex-shrink: 0;
+}
+
+.week-card:hover .week-edit-hint { color: var(--pink); }
+
+.month-day-cell:not(.empty):hover {
+  background: #1a1a1a;
+  outline: 1.5px solid var(--border-bright);
+}
+
 /* ── Scrollbar ── */
 .view-content::-webkit-scrollbar { width: 3px; }
 .view-content::-webkit-scrollbar-track { background: var(--bg); }

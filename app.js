@@ -191,8 +191,12 @@ function renderWeek() {
           ${hasAny ? stars : '<span class="week-no-data">无打卡</span>'}
         </div>
         ${rec.note ? `<div class="week-note">${escHtml(rec.note)}</div>` : ''}
+        <span class="week-edit-hint">编辑 →</span>
       </div>
     `;
+    card.style.cursor = 'pointer';
+    const dateCopy = new Date(d);
+    card.addEventListener('click', () => switchToDay(dateCopy));
     container.appendChild(card);
   }
 }
@@ -281,6 +285,8 @@ function renderMonthCalendar() {
       ${!isFuture ? `<div class="cell-stars">${stars}</div>` : ''}
       ${!isFuture ? `<div class="cell-weight ${wtClass}">${wt}</div>` : ''}
     `;
+    cell.style.cursor = 'pointer';
+    cell.addEventListener('click', () => switchToDay(date));
     grid.appendChild(cell);
   }
 
@@ -412,6 +418,18 @@ document.getElementById('monthNext').addEventListener('click', () => {
   currentMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 1);
   renderMonth();
 });
+
+// ── Switch to day view for a specific date ────────────────────────
+function switchToDay(date) {
+  currentDay = new Date(date);
+  currentDay.setHours(0,0,0,0);
+  document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.view-content').forEach(v => v.classList.remove('active'));
+  document.querySelector('.nav-tab[data-view="day"]').classList.add('active');
+  document.getElementById('view-day').classList.add('active');
+  loadDayView();
+  document.getElementById('view-day').scrollTop = 0;
+}
 
 // ── Utility ───────────────────────────────────────────────────────
 function escHtml(str) {
