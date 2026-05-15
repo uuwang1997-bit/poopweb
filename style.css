@@ -516,3 +516,18 @@ body {
   align-self: flex-end;
   flex-shrink: 0;
 }
+
+/* iOS PWA touch fix */
+* { cursor: pointer; }
+input, textarea { cursor: text; }
+.view-content { cursor: default; }
+button, label, .check-item, .week-card, .month-day-cell, .date-arrow, .nav-tab {
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
+}
+input, textarea {
+  touch-action: auto;
+  -webkit-user-select: text;
+  user-select: text;
+}

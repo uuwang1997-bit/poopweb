@@ -1,3 +1,6 @@
+// iOS PWA touch fix
+document.addEventListener('touchstart', function(){}, {passive: true});
+
 // ── Storage helpers ──────────────────────────────────────────────
 const STORE_KEY = 'bodytracker_v1';
 
